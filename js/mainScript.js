@@ -1,3 +1,6 @@
+// by default the submit button is hidden 
+$("#nextBtn").hide();
+
 var tempCollection = [];
 
 var generateQuestions = () => {
@@ -24,18 +27,14 @@ var generateQuestions = () => {
                 }
 
                 $("#start").hide();
-
-                //  $("#questionField").html("<br>" + questionCollection[0].question + "<br>");
-                //  $("#questionOptions").html(questionCollection[0].correct_answer);
+                $("#nextBtn").show();
 
                 var count = 0;
-                var score = 1;
+                var score = 0;
 
                 var userChoice; // Stores users choice as the index of the selected answer in the array of all possible answers
                 var answerIndex; // Stores the index of the correct answer in the array of all possible answers
                 // Both variables compared when the user clicks next button. Score incremented if they match
-
-
 
                 // UPDATE QUESTION 
                 var allAnswers = [];
@@ -95,11 +94,13 @@ var generateQuestions = () => {
                         count++; // Increment question counter
 
                         console.log("HI IM HERE");
+                        console.log(score);
                         if (count < questionCollection.length) {
                             $("#answerList").empty(); // Clear elements from previous question
                             generateNewQuestion();
+                            updateResult();
                         } else {
-                            
+                            // another modal box perhaps congratulating you
                             console.log("You've won 1 million!");
                         }
 
@@ -117,23 +118,24 @@ var generateQuestions = () => {
                         var allAnswers = [];
                         var correctAnswer = questionCollection[count].correct_answer;
                         $("#answerList").empty(); // Clear elements from previous question
-                    
+
                         // Create an array from all of the answers
                         questionCollection[count].incorrect_answers.forEach(function (answer) {
                             allAnswers.push(answer);
                         });
-                    
+
                         // Push correct answer into array at random index
                         allAnswers.join();
                         allAnswers.splice(Math.floor(Math.random() * 4), 0, correctAnswer);
                         allAnswers.join();
-                    
+
                         // Record the index of the correct answer in the array so it can be compared with the index of users choice
                         answerIndex = allAnswers.indexOf(correctAnswer);
-                    
+
                         // Append question to the DOM
-                        $("#questionField").html(questionCollection[count].question);
-                    
+                        var countDisplay = count + 1;
+                        $("#questionField").html("Question Number " + countDisplay + "<br>" + questionCollection[count].question);
+
                         for (var i = 0; i < allAnswers.length; i++) { // Loop through answers and append each to list
                             var li = document.createElement("li");
                             var text = document.createTextNode(decodeHTML(allAnswers[i]));
@@ -144,17 +146,69 @@ var generateQuestions = () => {
                         }
 
                     }
+
+                    function updateResult() {
+                        switch (score) {
+                            case 0:
+                                $("#score").html("50$");
+                                break;
+                            case 1:
+                                $("#score").html("100$");
+                                break;
+                            case 2:
+                                $("#score").html("200$");
+                                break;
+                            case 3:
+                                $("#score").html("300$");
+                                break;
+                            case 4:
+                                $("#score").html("500$");
+                                break;
+                            case 5:
+                                $("#score").html("700$");
+                                break;
+                            case 6:
+                                $("#score").html("1000$");
+                                break;
+                            case 7:
+                                $("#score").html("1500$");
+                                break;
+                            case 8:
+                                $("#score").html("2000$");
+                                break;
+                            case 9:
+                                $("#score").html("2500$");
+                                break;
+                            case 10:
+                                $("#score").html("5000$");
+                                break;
+                            case 11:
+                                $("#score").html("10000$");
+                                break;
+                            case 12:
+                                $("#score").html("15000$");
+                                break;
+                            case 13:
+                                $("#score").html("20000$");
+                                break;
+                            case 14:
+                                $("#score").html("100000$");
+                                break;
+                            default:
+                                $("#score").html("0$");
+                                break;
+                        }
+                    };
+
                 });
-                //kraq na ajax wrapper-a nai vutreshniq
+
             });
 
         });
 
         console.log(questionCollection);
-
         return tempCollection;
     });
-
 };
 
 var startGame = () => {
@@ -167,39 +221,6 @@ function decodeHTML(html) {
     return text.value;
 }
 
-var updateQuestion = (questionCollection) => {
-
-    var allAnswers = [];
-    var correctAnswer = questionCollection[count].correct_answer;
-    $("#answerList").empty(); // Clear elements from previous question
-
-    // Create an array from all of the answers
-    questionCollection[count].incorrect_answers.forEach(function (answer) {
-        allAnswers.push(answer);
-    });
-
-    // Push correct answer into array at random index
-    allAnswers.join();
-    allAnswers.splice(Math.floor(Math.random() * 4), 0, correctAnswer);
-    allAnswers.join();
-
-    // Record the index of the correct answer in the array so it can be compared with the index of users choice
-    answerIndex = allAnswers.indexOf(correctAnswer);
-
-    // Append question to the DOM
-    $("#questionField").html(questionCollection[count].question);
-
-    for (var i = 0; i < allAnswers.length; i++) { // Loop through answers and append each to list
-        var li = document.createElement("li");
-        var text = document.createTextNode(decodeHTML(allAnswers[i]));
-        li.appendChild(text);
-        li.classList.add("answer");
-        li.id = i;
-        document.getElementById("answerList").appendChild(li);
-    }
-
-};
-
 // modal box 
 // Get the modal and the button that opens it
 var modal = document.getElementById("myModal");
@@ -209,18 +230,18 @@ var btn = document.getElementById("modalBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
+btn.onclick = function () {
+    modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
+span.onclick = function () {
+    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
