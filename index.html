@@ -14,14 +14,24 @@
 <body>
 
     <div class="jumbotron text-center">
-        <h1> Millionaire Trivia Game </h1>
+        <h1 style="font-family: 'Inconsolata', monospace;"> Millionaire Trivia Game </h1>
         <p> This is a simple game that resembles the popular tv show "Who wants to be a millionaire". <br>
         Please click on the button bellow to figure out how to play. </p>
         <button id="modalBtn" class="btn btn-primary">Instructions</button>
         <div id="myModal" class="modal">
                 <div class="modal-content">
                   <span class="close">&times;</span>
-                  <p>I am going to put the rules here.</p>
+                  <p>Click on the button "Start game" to start your quest on becoming a millionaire! <br>
+                Firstly, proceed to read carefully through the question. You have to choose only 1 correct answer. 
+            In order to do that simply click above the selected answer - a blue background will appear to assure you that you have chosen one. If you hesitate between 2 answers you may choose to use any of the jokers: <br><br>
+           
+            50/50   --  will eliminate 2 wrong answers<br>
+            ♥   --  will give you suggestion by a friend<br>
+            people  --  will ask "the public" for the correct answer <br><br>
+           
+            <br>
+        Then if your answer is correct you will proceed to the next one and if it is not - your game will be over. You may restart it any time by clicking on the "Restart" button. <br> 
+    Enjoy!</p>
                 </div>
               </div>
     </div>
@@ -34,11 +44,12 @@
             <div id="questionField"></div>
                     <ul id="answerList"></ul>
                     <button id="nextBtn" class="btn">Submit</button>
-              <br>       
+              <br>  
+              <button id="restartBtn" class="btn"> <a href="index.html">Restart Game</a> </button>     
         </div>
 
         <div class="col-md-4">
-            Your score:
+            Current sum:
             <br>
             <div id="score">0$</div>
             <br>

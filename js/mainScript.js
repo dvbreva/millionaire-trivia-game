@@ -1,5 +1,6 @@
 // by default the submit button is hidden 
 $("#nextBtn").hide();
+$("#restartBtn").hide();
 
 var tempCollection = [];
 
@@ -109,7 +110,7 @@ var generateQuestions = () => {
                         $("#answerList").html("");
                         $("#nextBtn").hide();
                         $("#questionField").html("Sorry wrong answer. Game is over for you.");
-                        // you've won edi kakvo si
+                        $("#restartBtn").show();
                         console.log("Game over.");
                     }
 
@@ -212,6 +213,7 @@ var generateQuestions = () => {
 };
 
 var startGame = () => {
+    $("#score").html("0$");
     generateQuestions();
 };
 
