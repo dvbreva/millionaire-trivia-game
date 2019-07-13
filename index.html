@@ -45,6 +45,9 @@
                     <ul id="answerList"></ul>
                     <button id="nextBtn" class="btn">Submit</button>
               <br>  
+              <div id="suggestedAnswerByPublic">  </div>
+              <div id="suggestedAnswerByFriend">  </div>
+              <div id="suggestedAnswerByFifty">  </div>
               <button id="restartBtn" class="btn"> <a href="index.html">Restart Game</a> </button>     
         </div>
 
@@ -55,8 +58,9 @@
             <br>
             Jokers
             <br>
-            <button type="button" class="btn">50/50</button> <button type="button" class="btn">♥</button> <button
-                type="button" class="btn">People</button>
+            <button id="jokerFiftyBtn" type="button" class="btn">50/50</button> 
+            <button id="jokerFriendBtn" type="button" class="btn">♥</button> 
+            <button id="jokerPublicBtn" type="button" class="btn">People</button>
             <br>
             <br>
             Milestones
@@ -76,10 +80,15 @@
                 <li>300</li>
                 <li>200</li>
                 <li>100</li>
-                <li>50</li>
+                <li>50</li> 
             </ul>
+            <br>
             </div>
-
+</div>
+          
+      <div class="jumbotron text-center special-color-dark" style="margin-bottom:0">
+           <div class="col-md-12"> this project is done using the <a href="https://opentdb.com/">Open Trivia API</a></div>
+          </div> 
             <script src="js/ajaxWrapper.js"></script>
             <script src="js/mainScript.js"></script>
 </body>

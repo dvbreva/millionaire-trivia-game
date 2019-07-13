@@ -67,6 +67,33 @@ var generateQuestions = () => {
                     document.getElementById("answerList").appendChild(li);
                 }
 
+                // JOKERS
+                $('#jokerFriendBtn').click(function () { 
+                    var randomIndex = Math.floor(Math.random() * 4) + 1;
+
+                    for (var i = 0; i < 4; i++) {
+                        if (i == randomIndex) {
+                            console.log(allAnswers[i]);
+                            alert("You have decided to call one of your friends.\nHe thinks the answer is " + allAnswers[i]);
+                            $("#suggestedAnswerByFriend").html("Suggested answer by your friend is: " + allAnswers[i]);
+                        }
+                    }
+                    $(this).attr('disabled', true);
+                });
+
+                $("#jokerFiftyBtn").click(function () {
+                    var indexToRemove = allAnswers.indexOf(correctAnswer);
+                    allAnswers.splice(indexToRemove,1);
+                    alert("The game says the right answer is not among " + allAnswers[1] +  " or " + allAnswers[2]);
+                    $("#suggestedAnswerByFifty").html("The game elimates the following answers: " + allAnswers[1] + " and " + allAnswers[2]);
+                    $(this).attr('disabled', true);
+                });
+
+                $("#jokerPublicBtn").click(function () {
+                        alert("You have decided to ask the public.\n There are 70% votes for " + correctAnswer);
+                        $("#suggestedAnswerByPublic").html("Suggested answer by public is: " + correctAnswer);
+                        $(this).attr('disabled', true);
+                });
 
                 // SELECTING AN ANSWER 
                 document.querySelector("#answerList").addEventListener("click", function () {
@@ -109,6 +136,9 @@ var generateQuestions = () => {
                         $("questionCaption").html("");
                         $("#answerList").html("");
                         $("#nextBtn").hide();
+                        $("#suggestedAnswerByFriend").hide();
+                        $("#suggestedAnswerByPublic").hide();
+                        $("#suggestedAnswerByFifty").hide();
                         $("#questionField").html("Sorry wrong answer. Game is over for you.");
                         $("#restartBtn").show();
                         console.log("Game over.");
@@ -201,6 +231,8 @@ var generateQuestions = () => {
                         }
                     };
 
+
+
                 });
 
             });
@@ -223,12 +255,9 @@ function decodeHTML(html) {
     return text.value;
 }
 
-// modal box 
-// Get the modal and the button that opens it
+// modal box logic
 var modal = document.getElementById("myModal");
 var btn = document.getElementById("modalBtn");
-
-// Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
@@ -236,7 +265,6 @@ btn.onclick = function () {
     modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
 span.onclick = function () {
     modal.style.display = "none";
 }
